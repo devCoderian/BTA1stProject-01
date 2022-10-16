@@ -12,7 +12,7 @@ import Test_02 from './Test_02';
 
 const Test = () => {
     return(
-        <Link component={Test_02} props={{ message: 'I came from component one!' }}>>
+        <Link component={Test_02} props={{ message: 'I came from component one!' }}>
             Test
         </Link>
     )

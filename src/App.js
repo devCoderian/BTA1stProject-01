@@ -14,6 +14,8 @@ import {
 import Test from './Test'; 
 import styled from 'styled-components';
 import { useContext } from './context/WalletProvider';
+import WALLET_AUTH from './pages/auth/WALLET_AUTH';
+
 function App() {
   // ContextAPI Test
   // const { AccountChange, getAccount } = useContext();
@@ -40,14 +42,18 @@ function App() {
     // </div>
     // Router test
     <Router>
-      <Test />
+      <Container>
+        <WALLET_AUTH />
+  
+      </Container>
     </Router>
   );
 }
 
-const BlackHeader = styled.h3`
-  font-weight: 900;
-  color: black;
+const Container = styled.div`
+  width: 360px;
+  height: 600px;
 `
 
 export default App;
+

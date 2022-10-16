@@ -27,6 +27,7 @@
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
+    "@stacks/wallet-sdk": "^5.0.1",
     "babel-eslint": "^10.1.0",
     "babelify": "^10.0.0",
     "browserify": "^17.0.0",
@@ -42,6 +43,7 @@
     "patch-package": "^6.4.7",
     "react-chrome-extension-router": "^1.4.0",
     "react-router-dom": "^6.4.2",
+    "sha256": "^0.2.0",
     "styled-components": "^5.3.6",
     "vinyl-source-stream": "^2.0.0",
     "web-vitals": "^3.0.3"
