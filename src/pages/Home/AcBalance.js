@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link, goTo } from "react-chrome-extension-router";
 import WALLET_SEND from "../transfer/WALLET_SEND";
+import RECOVERY from "../auth/RECOVERY";
 const AcBalance = () => {
   return (
     <>
