@@ -9,13 +9,17 @@ import {
 import styled from "styled-components";
 import storage from "../../utils/storage";
 import { goTo } from "react-chrome-extension-router";
+import saltedSha256 from "salted-sha256";
 import WALLET_HOME from "../../pages/home/WALLET_HOME";
+import { useRecoilValue } from "recoil";
+import { AddressInfo } from "../../atom/atom";
 const InputMnem = () => {
   const [arrlength, setLength] = useState(12);
   // let temp = Array.from({ length: length });
   const [inputArray, setInputArray] = useState(
     Array.from({ length: arrlength })
   );
+  const [crAddress, setCraddress] = useRecoilState(AddressInfo);
 
   useEffect(() => {
     console.log("변경");
@@ -55,12 +59,12 @@ const InputMnem = () => {
         password: result.password,
       }).then(async (res) => {
         // 비밀키 => res.stxPrivateKey;
-        const HashAsync = await res.setPrivateKey;
-        console.log("HashAsync", HashAsync);
+        const saltedHashAsync = await result.setPr;
+        console.log("saltedHashAsync", saltedHashAsync);
         const address = getStxAddress({ account: res.accounts[0] });
         console.log(address);
-        storage.set("privateKey", HashAsync);
-        storage.set("address", address);
+        storage.set("privateKey", saltedHashAsync);
+        setCraddress(address);
         goToNext();
       });
     });

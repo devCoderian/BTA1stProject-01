@@ -3,21 +3,27 @@ import styled from "styled-components";
 import { GoKebabVertical } from "react-icons/go";
 import Network from "../../context/Network";
 import { StacksMainnet, StacksTestnet } from "@stacks/network";
+import { useRecoilState } from "recoil";
+import { NetWorkInfo } from "../../atom/atom";
 const HomeNav = () => {
-  const network = new StacksMainnet();
+  const [currentNetwork, setCurrentNetwork] = useRecoilState(NetWorkInfo);
+  const mainnet = new StacksMainnet();
   const testnet = new StacksTestnet();
+  const selectList = [mainnet, testnet];
+  const handleSelect = (e) => {
+    setCurrentNetwork(e.target.value);
+  };
   return (
     <>
       <Container>
         <div>logo</div>
         <SubContainer>
-          <Networks>
-            <option key="mainnet" value={network}>
-              mainnet
-            </option>
-            <option key="testnet" value={testnet}>
-              testnet
-            </option>
+          <Networks onChange={handleSelect}>
+            {selectList.map((item) => (
+              <option value={item} key={item}>
+                {item}
+              </option>
+            ))}
           </Networks>
           <h1>
             <GoKebabVertical />

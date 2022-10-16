@@ -1,28 +1,65 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "../../components/comn/Header";
+import { useRecoilValue } from "recoil";
+import { RecipientInfo, UserBalanceInfo } from "../../atom/atom";
+import { AddressInfo } from "../../Atom/atom";
+import {
+  makeSTXTokenTransfer,
+  broadcastTransaction,
+  AnchorMode,
+} from "@stacks/transactions";
 const WALLET_SUMMARY = () => {
+  const recipent = useRecoilValue(RecipientInfo);
+  const crUserAddress = useRecoilValue(AddressInfo);
+  const balance = useRecoilValue(UserBalanceInfo);
+  const [recipientUser, SetRecipientUser] = useRecoilState(RecipientInfo);
+  const [pv, setPv] = useState("");
+  useState(() => {
+    chrome.storage.local.get(["privateKey"], function (result) {
+      console.log(JSON.parse(result.password));
+      setPv(result.privateKey);
+    });
+  }, []);
+  const sendToken = async () => {
+    try {
+      const txOptions = {
+        recipient: recipientUser,
+        amount: 12345n,
+        senderKey: pv,
+        network: "testnet", // for mainnet, use 'mainnet'
+        memo: "test memo",
+        nonce: 0n, // set a nonce manually if you don't want builder to fetch from a Stacks node
+        fee: 200n, // set a tx fee if you don't want the builder to estimate
+        anchorMode: AnchorMode.Any,
+      };
+      const transaction = await makeSTXTokenTransfer(txOptions);
+      // to see the raw serialized tx
+      const serializedTx = transaction.serialize().toString("hex");
+      // broadcasting transaction to the specified network
+      const broadcastResponse = await broadcastTransaction(transaction);
+      const txId = broadcastResponse.txid;
+    } catch (err) {
+      console.error(err);
+    }
+  };
   return (
     <Container>
       <Header />
       <div>Summary</div>
       <SubContainer>
-        <div>{0}STX</div>
+        <div>{balance}STX</div>
         <div>
           <div>
             <span>FROM</span>
-            <span></span>
+            <span>{crUserAddress}</span>
           </div>
           <div>
             <span>TO</span>
-            <span></span>
-          </div>
-          <div>
-            <span>Fee</span>
-            <span></span>
+            <span>{recipent}</span>
           </div>
         </div>
-        <Btn>Next</Btn>
+        <Btn onClick={sendToken}>Next</Btn>
       </SubContainer>
     </Container>
   );

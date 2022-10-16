@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../../components/comn/Header";
 
 import { Link, goTo } from "react-chrome-extension-router";
 import WALLET_SUMMARY from "./WALLET_SUMMARY";
+import { useRecoilValue } from "recoil";
+import { AddressInfo, NetWorkInfo, RecipientInfo } from "../../atom/atom";
+import { UserBalanceInfo } from "../../Atom/atom";
+import { openSTXTransfer } from "@stacks/connect";
 const WALLET_SEND = () => {
+  const [amount, setAmount] = useState(0);
+  const [recipientUser, SetRecipientUser] = useRecoilState(RecipientInfo);
+  const address = useRecoilValue(AddressInfo);
+  const handleToUser = (e) => {
+    SetRecipientUser(e.target.value);
+  };
+  const handleAmount = (e) => {
+    setAmount(e.target.value);
+  };
+
   return (
     <Container>
       <Header />
@@ -13,11 +27,11 @@ const WALLET_SEND = () => {
         <BalanceBox>
           <InputParentBox>
             <label>TO</label>
-            <InputBox></InputBox>
+            <InputBox onChange={handleToUser}></InputBox>
           </InputParentBox>
           <InputParentBox>
             <label>STX</label>
-            <InputBox></InputBox>
+            <InputBox onChange={handleAmount}></InputBox>
           </InputParentBox>
           <InputParentBox>
             <label>Fee</label>
@@ -42,7 +56,6 @@ const Container = styled.div`
   justify-content: center;
   width: 360px;
   height: 600px;
-
   margin: 0 auto;
   padding-left: 30px;
 `;
