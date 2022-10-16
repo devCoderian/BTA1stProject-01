@@ -11,10 +11,11 @@ import {
   getCurrent,
   getComponentStack,
 } from 'react-chrome-extension-router';
-import Test from './Test'; 
-import styled from 'styled-components';
 import { useContext } from './context/WalletProvider';
 import WALLET_AUTH from './pages/auth/WALLET_AUTH';
+import CREATE_MNEM from './pages/auth/CREATE_MNEM';
+import LOGIN from './pages/auth/LOGIN';
+import RECOVERY from './pages/auth/RECOVERY';
 
 function App() {
   // ContextAPI Test
@@ -42,18 +43,13 @@ function App() {
     // </div>
     // Router test
     <Router>
-      <Container>
-        <WALLET_AUTH />
-  
-      </Container>
+        {/* <WALLET_AUTH /> */}
+        {/* <WALLET_AUTH />  */}
+        {/* <LOGIN /> */}
+        <RECOVERY />
     </Router>
   );
 }
-
-const Container = styled.div`
-  width: 360px;
-  height: 600px;
-`
 
 export default App;
 

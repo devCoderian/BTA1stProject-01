@@ -24,6 +24,7 @@ const Image = styled.img`
     position: absolute;
     left: 21px;
     top: 18px;
+    cursor: pointer;
 `
 const Title = styled.h1`
     position: absolute;

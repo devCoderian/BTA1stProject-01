@@ -1,18 +1,18 @@
 import React from 'react'
 import Header from '../../components/comn/Header'
-import CreateMenm from '../../components/create/CreateMenm';
 import styled from 'styled-components';
+import InputMnem from '../../components/recovery/InputMnem';
 
-const CREATE_MNEM = () => {
+const RECOVERY = () => {
   return (
     <Container>
-      <Header title = "Secret recovery phrase"/>
-      <CreateMenm />
+      <Header title = "Import Wallet"/>
+      <InputMnem />
     </Container>
   )
 }
 
-export default CREATE_MNEM;
+export default RECOVERY;
 
 const Container = styled.div`
   width: 360px;

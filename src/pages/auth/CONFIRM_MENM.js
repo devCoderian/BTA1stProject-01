@@ -1,18 +1,18 @@
 import React from 'react'
 import Header from '../../components/comn/Header'
-import CreateMenm from '../../components/create/CreateMenm';
 import styled from 'styled-components';
+import ConfirmMenm from '../../components/create/ConfirmMenmonic';
 
-const CREATE_MNEM = () => {
+const CONFIRM_MENM = ({params}) => {
   return (
     <Container>
-      <Header title = "Secret recovery phrase"/>
-      <CreateMenm />
+      <Header title = "Confirm recovery phrase"/>
+      <ConfirmMenm params={params}/>
     </Container>
   )
 }
 
-export default CREATE_MNEM;
+export default CONFIRM_MENM;
 
 const Container = styled.div`
   width: 360px;

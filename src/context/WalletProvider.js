@@ -26,6 +26,7 @@ const WalletProvider = ({ children }) => {
         console.log("[getAccount]")
         return account;
     }
+    
     return (
         <WalletContext.Provider
         value={{

@@ -1,16 +1,16 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import sha256 from 'sha256';
 import styled from 'styled-components';
 import storage from '../../utils/storage';
 import {
     goTo
-  } from 'react-chrome-extension-router';
+} from 'react-chrome-extension-router';
 import CreateMnem from '../../pages/auth/CREATE_MNEM';
 
 
 
 const InputPassword = () => {
-    
+
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
     const [confirm, setConfirm] = useState(null);
@@ -24,55 +24,56 @@ const InputPassword = () => {
     }
 
 
-    const handleSubmit = async() => {
-        console.log('[password]:', password); 
-        console.log('[passwordConfirm]:', passwordConfirm); 
-        if(password !== passwordConfirm) {
+    const handleSubmit = async () => {
+        console.log('[password]:', password);
+        console.log('[passwordConfirm]:', passwordConfirm);
+        if (password !== passwordConfirm) {
             setPassword('');
             setPasswordConfirm('');
             setConfirm(false);
-        }else{
-           
+        } else {
+
             let hashPassword = sha256(password);
             await storage.set('password', hashPassword);
             // await storage.get('password').then((res) => {
             //     console.log( JSON.parse(res));
             // });
-            let test = chrome.storage.local.get(['password'], function(result) {
+            let test = chrome.storage.local.get(['password'], function (result) {
                 console.log('Value currently is ' + result.password);
                 console.log('2');
             });
+
             goTo(CreateMnem);
         }
     }
-    return(
-            <InputContainer>
+    return (
+        <InputContainer>
             <Label>
-               password
+                password
             </Label>
-                <Input 
-                  onChange={handlePasswordConfirmChange}
-                  placeholder='password' 
-                  type="password" 
-                  name="password" 
-                  value={passwordConfirm}
-                  />
+            <Input
+                onChange={handlePasswordChange}
+                placeholder='password'
+                type="password"
+                name="password"
+                value={password}
+            />
             <Label>
-               password check
+                password check
             </Label>
-            <Input 
-                  onChange={handlePasswordChange}
-                  placeholder='password' 
-                  type="password" 
-                  name="password" 
-                  value={password}
-                  />
+            <Input
+                onChange={handlePasswordConfirmChange}
+                placeholder='password'
+                type="password"
+                name="password"
+                value={passwordConfirm}
+            />
             {(!confirm && confirm !== null) && <Warning>비밀번호가 일치하지 않습니다.</Warning>}
             <Button onClick={handleSubmit}>
-                    Next
+                Next
             </Button>
-        
-            </InputContainer> 
+
+        </InputContainer>
     )
 }
 

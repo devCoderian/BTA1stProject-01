@@ -2,17 +2,18 @@ import React from 'react'
 import Header from '../../components/comn/Header'
 import CreateMenm from '../../components/create/CreateMenm';
 import styled from 'styled-components';
+import Login from '../../components/login/Login';
 
-const CREATE_MNEM = () => {
+const LOGIN = () => {
   return (
     <Container>
-      <Header title = "Secret recovery phrase"/>
-      <CreateMenm />
+      <Header title = "WELCOME!"/>
+      <Login />
     </Container>
   )
 }
 
-export default CREATE_MNEM;
+export default LOGIN;
 
 const Container = styled.div`
   width: 360px;
