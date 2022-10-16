@@ -19,6 +19,7 @@ const HomeNav = () => {
     <>
       <Container>
         <div>logo</div>
+        <img src="/Users/minwoonam/Documents/GitHub/BTA1stProject-01/public/img/STX.png" />
         <SubContainer>
           <Networks onChange={handleSelect}>
             {selectList.map((item) => (
