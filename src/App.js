@@ -45,8 +45,8 @@ function App() {
     <Router>
         {/* <WALLET_AUTH /> */}
         {/* <WALLET_AUTH />  */}
-        {/* <LOGIN /> */}
-        <RECOVERY />
+        <LOGIN />
+        {/* <RECOVERY /> */}
     </Router>
   );
 }

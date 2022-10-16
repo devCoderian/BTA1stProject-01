@@ -5,9 +5,6 @@ import storage from '../../utils/storage';
 import {
     goTo
   } from 'react-chrome-extension-router';
-
-
-
 const Login = () => {
     
     const [password, setPassword] = useState('');
