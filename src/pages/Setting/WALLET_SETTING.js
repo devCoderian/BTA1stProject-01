@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { IoIosKey } from "react-icons/io";
+import Header from "../../components/comn/Header";
 const WALLET_SETTING = () => {
   return (
     <Container>
+      <Header title="Setting" />
       <div>
         내 계정
         {<div>Account</div>}

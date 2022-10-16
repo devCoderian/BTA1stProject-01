@@ -5,6 +5,8 @@ import Network from "../../context/Network";
 import { StacksMainnet, StacksTestnet } from "@stacks/network";
 import { useRecoilState } from "recoil";
 import { NetWorkInfo } from "../../atom/atom";
+import { goTo } from "react-chrome-extension-router";
+import WALLET_SETTING from "../Setting/WALLET_SETTING";
 const HomeNav = () => {
   const [currentNetwork, setCurrentNetwork] = useRecoilState(NetWorkInfo);
   const mainnet = new StacksMainnet();
@@ -25,7 +27,11 @@ const HomeNav = () => {
               </option>
             ))}
           </Networks>
-          <h1>
+          <h1
+            onClick={() => {
+              goTo(WALLET_SETTING);
+            }}
+          >
             <GoKebabVertical />
           </h1>
         </SubContainer>
