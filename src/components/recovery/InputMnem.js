@@ -9,7 +9,6 @@ import {
 import styled from "styled-components";
 import storage from "../../utils/storage";
 import { goTo } from "react-chrome-extension-router";
-import saltedSha256 from "salted-sha256";
 import WALLET_HOME from "../../pages/home/WALLET_HOME";
 const InputMnem = () => {
   const [arrlength, setLength] = useState(12);
@@ -56,15 +55,11 @@ const InputMnem = () => {
         password: result.password,
       }).then(async (res) => {
         // 비밀키 => res.stxPrivateKey;
-        const saltedHashAsync = await saltedSha256(
-          res.accounts[0].stxPrivateKey,
-          result.password,
-          true
-        );
-        console.log("saltedHashAsync", saltedHashAsync);
+        const HashAsync = await res.setPrivateKey;
+        console.log("HashAsync", HashAsync);
         const address = getStxAddress({ account: res.accounts[0] });
         console.log(address);
-        storage.set("privateKey", saltedHashAsync);
+        storage.set("privateKey", HashAsync);
         storage.set("address", address);
         goToNext();
       });
