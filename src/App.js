@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import storage from './utils/storage';
 const lightwallet = require("eth-lightwallet");
@@ -13,20 +13,26 @@ import {
 } from 'react-chrome-extension-router';
 import Test from './Test'; 
 import styled from 'styled-components';
-
+import { useContext } from './context/WalletProvider';
 function App() {
+  const { AccountChange, getAccount } = useContext();
   const [mnemonic , setMnenmonic] = useState('');
-  const getWallet = () => {
-    const mnem = lightwallet.keystore.generateRandomSeed();
-    setMnenmonic(mnem);
-    storage.set('localmnemonic', mnem);
-  }
+  useEffect(() => {
+    setMnenmonic(getAccount());
+  })
+
+  // const getWallet = () => {
+  //   const mnem = lightwallet.keystore.generateRandomSeed();
+  //   setMnenmonic(mnem);
+  //   storage.set('localmnemonic', mnem);
+  // }
 
   return (
     <div className="App">
       <header className="App-header">
-        <RedHeader onClick={getWallet}>Header {mnemonic}</RedHeader>
-        {/* <h3 onClick={() =>getSync()}>get test sync</h3> */}
+        {/* <BlackHeader onClick={getWallet}>Header {mnemonic}</BlackHeader> */}
+        <BlackHeader onClick={() => AccountChange('ian')}>Header {mnemonic}</BlackHeader>
+        <h1>{mnemonic}</h1>
       </header>
     </div>
   );
