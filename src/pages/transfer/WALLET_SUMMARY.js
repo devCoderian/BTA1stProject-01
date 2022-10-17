@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../../components/comn/Header";
 import { useRecoilValue } from "recoil";
@@ -13,19 +13,19 @@ const WALLET_SUMMARY = () => {
   const recipent = useRecoilValue(RecipientInfo);
   const crUserAddress = useRecoilValue(AddressInfo);
   const balance = useRecoilValue(UserBalanceInfo);
-  const [recipientUser, SetRecipientUser] = useRecoilState(RecipientInfo);
+  const recipientUser = useRecoilValue(RecipientInfo);
   const [pv, setPv] = useState("");
   useState(() => {
     chrome.storage.local.get(["privateKey"], function (result) {
-      console.log(JSON.parse(result.password));
-      setPv(result.privateKey);
+      console.log(JSON.parse(result.privateKey));
+      setPv(JSON.parse(result.privateKey));
     });
   }, []);
   const sendToken = async () => {
     try {
       const txOptions = {
         recipient: recipientUser,
-        amount: 12345n,
+        amount: 3,
         senderKey: pv,
         network: "testnet", // for mainnet, use 'mainnet'
         memo: "test memo",

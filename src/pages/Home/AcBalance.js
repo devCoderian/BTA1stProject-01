@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Link, goTo } from "react-chrome-extension-router";
 import WALLET_SEND from "../transfer/WALLET_SEND";
@@ -6,25 +6,11 @@ import RECOVERY from "../auth/RECOVERY";
 import { useRecoilValue } from "recoil";
 import { useRecoilState } from "recoil";
 const AcBalance = () => {
-  const address = useRecoilValue(AddressInfo);
-  const [balance, setBalance] = useRecoilState(UserBalanceInfo);
-  const getUserTestnetTokenUrl = `https://stacks-node-api.testnet.stacks.co/extended/v1/address/${address}/stx}`;
-  async function getBalance() {
-    try {
-      //응답 성공
-      const response = await axios.get(getUserTestnetTokenUrl);
-      console.log(response);
-      setBalance(response.balance);
-    } catch (error) {
-      //응답 실패
-      console.error(error);
-    }
-  }
   return (
     <>
       <Container>
         <BalanceBox>
-          <STX>{balance} STX</STX>
+          <STX>{490} STX</STX>
         </BalanceBox>
         <div>
           <Btn

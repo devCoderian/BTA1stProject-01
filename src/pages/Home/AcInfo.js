@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useRecoilState } from "recoil";
+import { AddressInfo } from "../../atom/atom";
 
 const AcInfo = () => {
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useRecoilState(AddressInfo);
   chrome.storage.local.get(["address"], function (result) {
-    console.log("Value currently is " + result.address);
+    console.log("Value currently is address " + result.address);
     setAddress(result.address);
   });
   return (
@@ -34,7 +36,7 @@ const AccountText = styled.span`
 
 const AddressText = styled.span`
   font-weight: 400;
-  font-size: 14px;
+  font-size: 10px;
 `;
 
 export default AcInfo;

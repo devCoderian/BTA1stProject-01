@@ -16,6 +16,7 @@ import WALLET_AUTH from "./pages/auth/WALLET_AUTH";
 import CREATE_MNEM from "./pages/auth/CREATE_MNEM";
 import LOGIN from "./pages/auth/LOGIN";
 import RECOVERY from "./pages/auth/RECOVERY";
+import { RecoilRoot } from "recoil";
 
 function App() {
   // ContextAPI Test
@@ -41,10 +42,12 @@ function App() {
     //   </header>
     // </div>
     // Router test
-    <Router>
-      {/* <WALLET_AUTH /> */}
-      <LOGIN />
-    </Router>
+    <RecoilRoot>
+      <Router>
+        {/* <WALLET_AUTH /> */}
+        <LOGIN />
+      </Router>
+    </RecoilRoot>
   );
 }
 

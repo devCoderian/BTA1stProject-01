@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { GoKebabVertical } from "react-icons/go";
-import Network from "../../context/Network";
 import { StacksMainnet, StacksTestnet } from "@stacks/network";
 import { useRecoilState } from "recoil";
 import { NetWorkInfo } from "../../atom/atom";
+import stx from "../../../public/img/LOGO.png";
 import { goTo } from "react-chrome-extension-router";
 import WALLET_SETTING from "../Setting/WALLET_SETTING";
 const HomeNav = () => {
@@ -18,15 +18,11 @@ const HomeNav = () => {
   return (
     <>
       <Container>
-        <div>logo</div>
-        <img src="/Users/minwoonam/Documents/GitHub/BTA1stProject-01/public/img/STX.png" />
+        <Image src={stx} />
         <SubContainer>
           <Networks onChange={handleSelect}>
-            {selectList.map((item) => (
-              <option value={item} key={item}>
-                {item}
-              </option>
-            ))}
+            <option value={mainnet}>mainnet</option>
+            <option value={testnet}>testnet</option>
           </Networks>
           <h1
             onClick={() => {
@@ -40,6 +36,9 @@ const HomeNav = () => {
     </>
   );
 };
+const Image = styled.img`
+  border-radius: 25px;
+`;
 const Container = styled.div`
   width: 360px;
   height: 50px;

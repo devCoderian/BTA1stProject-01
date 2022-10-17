@@ -5,7 +5,7 @@ const TradingBox = () => {
     <>
       <Container>
         <div>
-          <div>{"Oct 15 수신 : 0xasdsadasd"}</div>
+          <div>{"Oct 17 수신 : ST350J...WW5EJF"}</div>
         </div>
         <BalanceBox>
           <STX>1STX</STX>

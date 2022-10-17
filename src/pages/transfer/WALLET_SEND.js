@@ -4,7 +4,7 @@ import Header from "../../components/comn/Header";
 
 import { Link, goTo } from "react-chrome-extension-router";
 import WALLET_SUMMARY from "./WALLET_SUMMARY";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import { AddressInfo, NetWorkInfo, RecipientInfo } from "../../atom/atom";
 const WALLET_SEND = () => {
   const [amount, setAmount] = useState(0);

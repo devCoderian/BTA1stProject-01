@@ -3,10 +3,10 @@ import { goBack } from "react-chrome-extension-router";
 import arrow from "../../../public/img/arrow_back.png";
 import styled from "styled-components";
 
-const Header = ({ title }) => {
+const Header = ({ title, nav = true }) => {
   return (
     <Container>
-      <Image src={arrow} onClick={() => goBack()} />
+      {nav && <Image src={arrow} onClick={() => goBack()} />}
       <Title>{title}</Title>
     </Container>
   );

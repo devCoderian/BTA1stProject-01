@@ -16,7 +16,7 @@ const Login = () => {
     let hashedPassword = sha256(password);
     let storagePassword = "";
     chrome.storage.local.get(["password"], function (result) {
-      console.log(JSON.parse(result.password));
+      console.log("password", JSON.parse(result.password));
       storagePassword = JSON.parse(result.password);
       if (hashedPassword === JSON.parse(result.password)) {
         console.log("일치");
@@ -27,7 +27,7 @@ const Login = () => {
       }
     });
 
-    console.log(hashedPassword);
+    console.log("hashed", hashedPassword);
     console.log(storagePassword.toString() === hashedPassword.toString());
   };
   return (
