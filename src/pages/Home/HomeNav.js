@@ -11,7 +11,6 @@ const HomeNav = () => {
   const [currentNetwork, setCurrentNetwork] = useRecoilState(NetWorkInfo);
   const mainnet = new StacksMainnet();
   const testnet = new StacksTestnet();
-  const selectList = [mainnet, testnet];
   const handleSelect = (e) => {
     setCurrentNetwork(e.target.value);
   };
